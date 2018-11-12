@@ -3,6 +3,6 @@ var connection = mysql.createPool({
 	host: 'localhost',
 	user: 'root',
 	password: 'root',
-	database: 'project-work'
+	database: 'MoviesDB'
 });
 module.exports = connection;
