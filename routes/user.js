@@ -14,10 +14,22 @@ router.get('/', function(req, res, next) {
 		}
 	})
 });
-// GET USER
-router.get('/:userId', function(req, res, next) {
+// GET USER BY ID
+router.get('/id/:userId', function(req, res, next) {
 
-	user.getUser(req.params.userId, function (err, rows) {
+	user.getUserById(req.params.userId, function (err, rows) {
+
+		if( err ){
+			res.json(err);
+		} else{
+			res.json(rows);
+		}
+	})
+});
+// GET USER BY EMAIL
+router.post('/check', function(req, res, next) {
+
+	user.checkUser(req.body, function (err, rows) {
 
 		if( err ){
 			res.json(err);
