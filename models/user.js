@@ -11,12 +11,13 @@ var user = {
 	},
 
 	checkUser: function(user, callback) {
-		return db.query('SELECT email,profile_picture,name FROM User WHERE email=? AND password=?',[user.email,user.password], callback);
+		return db.query('SELECT id,email,profile_picture,name FROM User WHERE email=? AND password=?',[user.email,user.password], callback);
 	},
 
 	addUser: function (user,callback) {
+
 		return db.query('INSERT INTO User (name,email,password) VALUES(?,?,?)',[
-			user.name, user.email, user.password,
+			user.name, user.email, user.password,user.email
 		], callback);
 	}
 };
