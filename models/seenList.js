@@ -19,6 +19,12 @@ var seenList = {
 			userId
 		], callback)
 	},
+
+	seenListCount: function (userId,callback) {
+		return db.query('SELECT COUNT(film_id) as seenCount from seenList WHERE user_id=?',[
+			userId
+		], callback)
+	},
 };
 
 module.exports = seenList;

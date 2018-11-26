@@ -17,6 +17,11 @@ var watchList = {
 			userId
 		], callback)
 	},
+	watchListCount: function (userId,callback) {
+		return db.query('SELECT COUNT(film_id) as watchCount from watchList WHERE user_id=?',[
+			userId
+		], callback)
+	},
 };
 
 module.exports = watchList;

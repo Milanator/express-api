@@ -41,4 +41,18 @@ router.get('/user/:userId', function(req, res, next) {
 	});
 });
 
+
+// GET SEENLIST COUNT
+router.get('/user/:userId/count', function(req, res, next) {
+
+	seenList.seenListCount(req.params.userId, function (err, rows) {
+
+		if( err ){
+			res.json(err);
+		} else{
+			res.json(rows);
+		}
+	});
+});
+
 module.exports = router;

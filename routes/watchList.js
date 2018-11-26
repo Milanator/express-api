@@ -41,4 +41,17 @@ router.get('/user/:userId', function(req, res, next) {
 	});
 });
 
+// GET WATCHLIST COUNT
+router.get('/user/:userId/count', function(req, res, next) {
+
+	watchList.watchListCount(req.params.userId, function (err, rows) {
+
+		if( err ){
+			res.json(err);
+		} else{
+			res.json(rows);
+		}
+	});
+});
+
 module.exports = router;
