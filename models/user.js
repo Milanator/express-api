@@ -19,6 +19,13 @@ var user = {
 		return db.query('INSERT INTO User (name,email,password) VALUES(?,?,?)',[
 			user.name, user.email, user.password,user.email
 		], callback);
+	},
+
+	updateUser: function (user,callback) {
+
+		return db.query('UPDATE User SET name = ?,email = ?,password=?, profile_picture=? WHERE id = ? AND password = ?',[
+			user.name,user.email,user.newPassword,user.profilePicture,user.userId,user.oldPassword
+		], callback);
 	}
 };
 

@@ -51,4 +51,17 @@ router.post('/', function(req, res, next) {
 	})
 });
 
+// ADD USER
+router.post('/update', function(req, res, next) {
+
+	user.updateUser(req.body, function (err, rows) {
+
+		if( err ){
+			res.json(err);
+		} else{
+			res.json(rows);
+		}
+	})
+});
+
 module.exports = router;
