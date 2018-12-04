@@ -80,6 +80,19 @@ router.post('/create', function(req, res, next) {
 	});
 });
 
+// delete list
+router.post('/delete', function(req, res, next) {
+
+	myList.deleteMyList(req.body, function (err, rows) {
+
+		if( err ){
+			res.json(err);
+		} else{
+			res.json(rows);
+		}
+	});
+});
+
 // GET DATA ABOUT MY LISTS - CATEGORIES
 router.get('/user/:userId/category/:shortcut', function(req, res, next) {
 

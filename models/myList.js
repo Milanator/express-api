@@ -22,14 +22,14 @@ var myList = {
 
 	addToMyList: function (body,callback) {
 		return db.query('INSERT INTO myList_movie (movie_id,myList_id) VALUES(?,?)'
-			,[body.movieId,body.listId], () => {
+			,[body.movieId,body.myListId], () => {
 				return db.query(
-					'INSERT INTO movie (movie_id,title,overview,poster_path,language,vote_average)' +
-					'SELECT * FROM (SELECT ?,?,?,?,?,?) AS tmp ' +
+					'INSERT INTO movie (movie_id,title,overview,poster_path,original_language,vote_average,genres)' +
+					'SELECT * FROM (SELECT ?,?,?,?,?,?,?) AS tmp ' +
 					'WHERE NOT EXISTS (' +
 					'SELECT title FROM movie WHERE title = ?' +
 					') LIMIT 1;'
-					,[body.movieId,body.title,body.overview,body.posterPath,body.originalLanguage,body.voteAverage,body.title],callback);
+					,[body.movieId,body.title,body.overview,body.posterPath,body.originalLanguage,body.voteAverage,body.genres,body.title],callback);
 		});
 	},
 
@@ -41,6 +41,10 @@ var myList = {
 
 	createMyList: function(body, callback) {
 		return db.query('INSERT INTO myList (user_id,name,first,shortcut) VALUES(?,?,?,?)',[body.userId,body.name,body.first,body.shortcut],callback);
+	},
+
+	deleteMyList: function(body, callback) {
+		return db.query('DELETE FROM myList WHERE id=?',[body.myListId],callback);
 	},
 
 	getByShortcut: function(userId,shortcut,callback){
