@@ -14,7 +14,7 @@ var myList = {
 
 	getAllUsersLists: function (userId,callback) {
 		return db.query(
-			`SELECT id,name
+			`SELECT id,name,first
 			FROM myList
 			WHERE myList.user_id = ?`
 			,[userId], callback)
