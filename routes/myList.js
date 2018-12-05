@@ -68,7 +68,7 @@ router.post('/create', function(req, res, next) {
 });
 
 // delete list
-router.post('/delete', function(req, res, next) {
+router.delete('/delete', function(req, res, next) {
 
 	myList.deleteMyList(req.body, function (err, rows) {
 
@@ -81,7 +81,7 @@ router.post('/delete', function(req, res, next) {
 });
 
 // update list
-router.patch('/update', function(req, res, next) {
+router.put('/update', function(req, res, next) {
 
 	myList.updateMyList(req.body, function (err, rows) {
 
