@@ -44,7 +44,7 @@ var myList = {
 	},
 
 	deleteMyList: function(body, callback) {
-		return db.query('DELETE FROM myList WHERE id=?',[body.myListId],callback);
+		return db.query('DELETE FROM myList WHERE id = ?',[body.myListId],callback);
 	},
 
 	updateMyList: function(body, callback) {
