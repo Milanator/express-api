@@ -5,7 +5,7 @@ var myList = require('../models/myList');
 // GET DATA ABOUT MY LISTS - ALL DATA
 router.get('/user/:userId/all', function(req, res, next) {
 
-	myList.myListsAllContent(req.params.userId, function (err, rows) {
+	myList.getAllUsersListsWithFilms(req.params.userId, function (err, rows) {
 
 		if( err ){
 			res.json(err);
@@ -18,20 +18,7 @@ router.get('/user/:userId/all', function(req, res, next) {
 // GET DATA ABOUT MY LISTS - CATEGORIES
 router.get('/user/:userId/category', function(req, res, next) {
 
-	myList.MyListCategories(req.params.userId, function (err, rows) {
-
-		if( err ){
-			res.json(err);
-		} else{
-			res.json(rows);
-		}
-	});
-});
-
-// GET DATA ABOUT MY LISTS - CATEGORIES
-router.get('/user/:userId/category', function(req, res, next) {
-
-	myList.MyListCategories(req.params.userId, function (err, rows) {
+	myList.getAllUsersLists(req.params.userId, function (err, rows) {
 
 		if( err ){
 			res.json(err);
@@ -84,6 +71,19 @@ router.post('/create', function(req, res, next) {
 router.post('/delete', function(req, res, next) {
 
 	myList.deleteMyList(req.body, function (err, rows) {
+
+		if( err ){
+			res.json(err);
+		} else{
+			res.json(rows);
+		}
+	});
+});
+
+// update list
+router.patch('/update', function(req, res, next) {
+
+	myList.updateMyList(req.body, function (err, rows) {
 
 		if( err ){
 			res.json(err);

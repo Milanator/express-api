@@ -2,7 +2,7 @@ var db = require('../database');
 
 var myList = {
 
-	myListsAllContent: function (userId,callback) {
+	getAllUsersListsWithFilms: function (userId,callback) {
 		return db.query(
 			`SELECT myList.shortcut,myList.id,myList.name,myList_movie.*,movie.*
 			FROM myList
@@ -12,7 +12,7 @@ var myList = {
 			,[userId], callback)
 	},
 
-	MyListCategories: function (userId,callback) {
+	getAllUsersLists: function (userId,callback) {
 		return db.query(
 			`SELECT id,name
 			FROM myList
@@ -45,6 +45,10 @@ var myList = {
 
 	deleteMyList: function(body, callback) {
 		return db.query('DELETE FROM myList WHERE id=?',[body.myListId],callback);
+	},
+
+	updateMyList: function(body, callback) {
+		return db.query('UPDATE myList SET name=? WHERE id=?',[body.name,body.myListId],callback);
 	},
 
 	getByShortcut: function(userId,shortcut,callback){
