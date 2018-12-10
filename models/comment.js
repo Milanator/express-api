@@ -10,7 +10,7 @@ var comment = {
 
 	getComments: function (movieId,offset,callback) {
 		return db.query(
-			`SELECT comment.*, user.name, user.profile_picture FROM comment JOIN user ON user.id = comment.user_id WHERE movie_id=? ORDER BY comment.created_at DESC LIMIT 5 OFFSET ?`,[movieId,Number(offset)], callback)
+			`SELECT comment.*, user.name, user.profile_picture FROM comment JOIN user ON user.id = comment.user_id WHERE movie_id=? ORDER BY comment.created_at DESC LIMIT 3 OFFSET ?`,[movieId,Number(offset)], callback)
 	}
 };
 
