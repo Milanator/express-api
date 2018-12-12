@@ -4,7 +4,7 @@ var myList = {
 
 	getAllUsersListsWithFilms: function (userId,callback) {
 		return db.query(
-			`SELECT myList.shortcut,myList.id,myList.name,myList_movie.*,movie.*
+			`SELECT myList.shortcut,myList.id,myList.name,myList.description,myList_movie.*,movie.*
 			FROM myList
 			JOIN myList_movie ON myList_movie.myList_id = myList.id
 			JOIN movie ON movie.movie_id = myList_movie.movie_id
@@ -14,7 +14,7 @@ var myList = {
 
 	getAllUsersLists: function (userId,callback) {
 		return db.query(
-			`SELECT id,name,first
+			`SELECT id,name,first,description
 			FROM myList
 			WHERE myList.user_id = ?`
 			,[userId], callback)
@@ -54,7 +54,7 @@ var myList = {
 	},
 
 	getByShortcut: function(userId,shortcut,callback){
-		return db.query('SELECT movie_id,myList_id,shortcut from myList JOIN myList_movie ON myList_movie.myList_id = myList.id WHERE user_id=? AND myList.shortcut=?',[userId,shortcut], callback)
+		return db.query('SELECT movie_id,myList_id,shortcut,description from myList JOIN myList_movie ON myList_movie.myList_id = myList.id WHERE user_id=? AND myList.shortcut=?',[userId,shortcut], callback)
 	}
 };
 
