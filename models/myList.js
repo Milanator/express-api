@@ -40,15 +40,17 @@ var myList = {
 	},
 
 	createMyList: function(body, callback) {
-		return db.query('INSERT INTO myList (user_id,name,first,shortcut) VALUES(?,?,?,?)',[body.userId,body.name,body.first,body.shortcut],callback);
+		return db.query('INSERT INTO myList (user_id,name,description,first,shortcut) VALUES(?,?,?,?,?)',[body.userId,body.name,body.description,body.first,body.shortcut],callback);
 	},
 
+	//
 	deleteMyList: function(body, callback) {
 		return db.query('DELETE FROM myList WHERE id = ?',[body.myListId],callback);
 	},
 
+	//
 	updateMyList: function(body, callback) {
-		return db.query('UPDATE myList SET name=? WHERE id=?',[body.name,body.myListId],callback);
+		return db.query('UPDATE myList SET name=?,description=? WHERE id=?',[body.name,body.description,body.myListId],callback);
 	},
 
 	getByShortcut: function(userId,shortcut,callback){
